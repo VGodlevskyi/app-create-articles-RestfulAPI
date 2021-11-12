@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,7 +32,7 @@ public class ArticleFacade implements Facade<Article, ArticleResponse, ArticleRe
 
     @Override
     public ArticleResponse fromEntity(Article entity) {
-        return mapper.map(entity, ArticleResponse.class );
+        return mapper.map(entity, ArticleResponse.class);
     }
 
     @Override
@@ -52,4 +53,7 @@ public class ArticleFacade implements Facade<Article, ArticleResponse, ArticleRe
                 .collect(Collectors.toList());
     }
 
+    public List<Article> getArticlesForLastWeek() {
+        return articleService.getArticlesForLastWeek();
+    }
 }

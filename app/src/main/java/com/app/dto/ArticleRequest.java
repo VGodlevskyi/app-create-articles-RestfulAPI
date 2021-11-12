@@ -20,7 +20,7 @@ public class ArticleRequest {
 
     @NotBlank(message = "date is mandatory")
     @Pattern(regexp = "[0-9]{4}-[0-9]{2}-[0-9]{2}$",
-            message = "date is not valid ISO-8601 format")
+            message = "date is not valid - use format \"yyyy-MM-dd\" ")
     private String datePublishing;
 
 }

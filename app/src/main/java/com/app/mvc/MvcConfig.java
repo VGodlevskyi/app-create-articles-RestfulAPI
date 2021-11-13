@@ -12,9 +12,9 @@ public class MvcConfig implements WebMvcConfigurer {
         String[][] mappings = {
                 //  mapping     file name in `resources/templates` folder `.html`
                 {"/"      , "menu" },
-                {"/home"  , "home" },
-                {"/articles/statistic"  , "statistic" },
-                {"/articles/all" , "articles"},
+                {"/home/"  , "home" },
+                {"/articles/statistic/"  , "statistic" },
+                {"/articles/all/" , "articles"},
         };
 
         for (String[] item: mappings) {

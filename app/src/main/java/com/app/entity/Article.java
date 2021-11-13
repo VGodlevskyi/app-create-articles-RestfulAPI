@@ -30,7 +30,4 @@ public class Article {
 
     @Column(name = "datePublishing", nullable = false)
     private String datePublishing;
-
-
-
 }

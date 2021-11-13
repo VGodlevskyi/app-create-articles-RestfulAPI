@@ -16,37 +16,31 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class UserDetails {
 
-  private final UserRepository userRepo;
+    private final UserRepository userRepo;
 
-  private org.springframework.security.core.userdetails.UserDetails mapper(User x) {
-    List<GrantedAuthority> allRoles = Arrays.stream(x.getRoles())
-      .map(s -> (GrantedAuthority) () -> s)           // hasRole
-      .map(s -> (GrantedAuthority) () -> "ROLE_" + s) // hasAuthority
-      .collect(Collectors.toList());
+    private org.springframework.security.core.userdetails.UserDetails mapper(User x) {
+        List<GrantedAuthority> allRoles = Arrays.stream(x.getRoles())
+                .map(s -> (GrantedAuthority) () -> s)
+                .collect(Collectors.toList());
 
-    return org.springframework.security.core.userdetails.User
-      .withUsername(x.getUsername())
-      .password(x.getPassword())
-      .authorities(allRoles)
-      .build();
-  }
+        allRoles.stream().forEach(a -> System.out.println(a.getAuthority()));
 
-  @Bean
-  public UserDetailsService uds() {
+        return org.springframework.security.core.userdetails.User
+                .withUsername(x.getUsername())
+                .password(x.getPassword())
+                .authorities(allRoles)
+                .build();
+    }
 
-//    UserDetailsService uds = (username) -> userRepo.findByUsername(username)
-//      .map(u -> mapper(u))
-//      .orElseThrow(() -> new UsernameNotFoundException(username));
-
-    return new UserDetailsService() {
-      @Override
-      public org.springframework.security.core.userdetails.UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepo.findByUsername(username)
-          .map(u -> mapper(u))
-          .orElseThrow(() -> new UsernameNotFoundException(username));
-      }
-    };
-
-  }
-
+    @Bean
+    public UserDetailsService uds() {
+        return new UserDetailsService() {
+            @Override
+            public org.springframework.security.core.userdetails.UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+                return userRepo.findByUsername(username)
+                        .map(u -> mapper(u))
+                        .orElseThrow(() -> new UsernameNotFoundException(username));
+            }
+        };
+    }
 }

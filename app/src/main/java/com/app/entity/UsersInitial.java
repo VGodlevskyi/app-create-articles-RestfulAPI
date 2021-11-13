@@ -17,7 +17,8 @@ public class UsersInitial {
   public void create() {
     userRepository.saveAll(Arrays.asList(
        new User("user",  enc.encode("user"), "USER"),
-       new User("admin", enc.encode("admin"), "ADMIN")
+       new User("admin", enc.encode("admin"), "ADMIN"),
+       new User("ivan", enc.encode("ivan"), "")
     ));
   }
 }

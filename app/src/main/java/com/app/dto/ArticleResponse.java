@@ -10,5 +10,4 @@ public class ArticleResponse {
     private String author;
     private String content;
     private String datePublishing;
-
 }

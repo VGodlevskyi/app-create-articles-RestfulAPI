@@ -23,15 +23,15 @@ public class MySecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/console/**").permitAll()
                 .antMatchers("/articles/statistic").hasAuthority("ADMIN")
-                .antMatchers("/articles/create").hasRole("USER")
-                .antMatchers("/articles/all").hasRole("USER")
-                .anyRequest().authenticated();
+                .antMatchers("/articles/statistic/**").hasAuthority("ADMIN")
+                .antMatchers("/articles/create").hasAuthority("USER")
+                .antMatchers("/articles/create/**").hasAuthority("USER")
+                .antMatchers("/articles/all").hasAnyAuthority()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin();
 
-        http
-                .formLogin()
-                .permitAll();
         http.csrf().disable();
         http.headers().frameOptions().disable();
     }
-
 }

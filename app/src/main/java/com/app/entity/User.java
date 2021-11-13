@@ -34,5 +34,4 @@ public class User {
   public void setRoles(String[] roles) {
     this.roles = String.join(ROLES_DELIMITER, roles);
   }
-
 }

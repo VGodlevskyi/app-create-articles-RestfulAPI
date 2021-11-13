@@ -3,11 +3,9 @@ package com.app.entity;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @EntityListeners({AuditingEntityListener.class})
 @Entity
@@ -21,12 +19,16 @@ public class Article {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @Column(name = "title", nullable = false)
     private String title;
 
+    @Column(name = "author", nullable = false)
     private String author;
 
+    @Column(name = "content", nullable = false)
     private String content;
 
+    @Column(name = "datePublishing", nullable = false)
     private String datePublishing;
 
 

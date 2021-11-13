@@ -24,7 +24,7 @@ public class ArticleController {
         return articleFacade.createArtical(articleRequest);
     }
 
-    @GetMapping("")
+    @GetMapping("all")
     public List<ArticleResponse> getAllArticles(
             @RequestParam(value = "page", required = false, defaultValue = "0") int page,
             @RequestParam(value = "limit", required = false, defaultValue = "10") int limit) {
